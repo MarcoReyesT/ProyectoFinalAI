@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTutorias extends Migration
+class CreateTutoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,8 @@ class CrearTutorias extends Migration
     {
         Schema::create('tutorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tutor_id')->unsigned();
-            $table->integer('ramo_id')->unsigned();
-            $table->foreign('tutor_id')->references('id')->on('tutores');
-            $table->foreign('ramo_id')->references('id')->on('ramos');
-        }); 
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,6 +26,6 @@ class CrearTutorias extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tutorias');
     }
 }
