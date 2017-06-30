@@ -21,6 +21,7 @@ Route::group(['middleware' => ['cors']], function () {
 
 	Route::resource('tutores', 'TutorController');
 	Route::resource('tutorias', 'TutoriaController');
-	Route::resource('ramos', 'RamoController');
+	Route::resource('ramos', 'RamoController',['only'=>['index','show']]);
+	Route::resource('estudiantes', 'EstudianteController');
 
 });
