@@ -23,5 +23,17 @@ class RamoSeeder extends Seeder
       'id' => 3,
       'nombre_ramo' => 'Anatomia 1',
       ]);
+    \DB::table('ramos')->insert([
+      'id' => 4,
+      'nombre_ramo' => 'Anatomia 2',
+      ]);
+    \DB::table('ramos')->insert([
+      'id' => 5,
+      'nombre_ramo' => 'Calculo 2',
+      ]);
+    \DB::table('ramos')->insert([
+      'id' => 6,
+      'nombre_ramo' => 'Fisica 2',
+      ]);
     }
 }

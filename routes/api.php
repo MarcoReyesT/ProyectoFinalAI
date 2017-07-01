@@ -19,9 +19,9 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['cors']], function () {
 
-	Route::resource('tutores', 'TutorController');
+	Route::resource('tutores', 'TutorController', ['only'=>['index','show']]);
 	Route::resource('tutorias', 'TutoriaController');
-	Route::resource('ramos', 'RamoController',['only'=>['index','show']]);
+	Route::resource('ramos', 'RamoController', ['only'=>['index','show']]);
 	Route::resource('estudiantes', 'EstudianteController');
 
 });
