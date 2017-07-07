@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Tutoria;
+use App\Estudiante;
+use App\Ramo;
+use App\Tutor;
 
 class TutoriaController extends Controller
 {
@@ -21,7 +24,32 @@ class TutoriaController extends Controller
      */
     public function index()
     {
-        return Tutoria::all();
+
+
+
+
+
+        $tutorias = Tutoria::all();
+        $datos = array();
+        $tutorDatos = array();
+        $cont = 0;
+
+        foreach ($tutorias as $tutoria) {
+            $estudiante = Estudiante::find($tutoria->estudiante_id);
+            $ramo = Ramo::find($tutoria->ramo_id);
+            $tutor = Tutor::find($tutoria->tutor_id);
+
+            $datos[$cont]['id'] = $tutoria->id;
+            $datos[$cont]['fecha'] = $tutoria->fecha;
+            $datos[$cont]['monto'] = $tutoria->monto;
+            $datos[$cont]['tutor'] = $tutor;
+            $datos[$cont]['ramo'] = $ramo;
+            $datos[$cont]['estudiante'] = $estudiante;
+
+            $cont++;
+        }
+
+        return $datos;
     }
 
 
@@ -52,15 +80,26 @@ class TutoriaController extends Controller
      */
     public function show($id)
     {
+
+
+
+
         $tutoria = Tutoria::find($id);
-        if (!isset($tutoria)) {
-            $datos = [
-            'errors' => true,
-            'msg' => 'No se encontró al tutoria con ID = ' . $id,
-            ];
-            $tutoria = \Response::json($datos, 404);
-        }
-        return $tutoria;
+        $datos = array();
+
+        $estudiante = Estudiante::find($tutoria->estudiante_id);
+        $ramo = Ramo::find($tutoria->ramo_id);
+        $tutor = Tutor::find($tutoria->tutor_id);
+
+
+        $datos['id'] = $tutoria->id;
+        $datos['fecha'] = $tutoria->fecha;
+        $datos['monto'] = $tutoria->monto;
+        $datos['tutor'] = $tutor;
+        $datos['ramo'] = $ramo;
+        $datos['estudiante'] = $estudiante;
+
+        return $datos;
     }
 
 
